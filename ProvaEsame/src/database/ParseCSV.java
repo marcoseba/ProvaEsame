@@ -6,10 +6,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import database.filtri.FilterEsAlbArrGreater;
+import database.filtri.FilterEsAlbArrIncluded;
+import database.filtri.Filtro;
+import database.filtri.Record;
+
 
 public class ParseCSV {
 	
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) {
 		
 		String csvFile = "/home/marcoseba/universita/programmazione/esame/dataset/dataset61.csv";
 		BufferedReader br = null;                                     
@@ -64,20 +69,24 @@ public class ParseCSV {
 		    e.printStackTrace();
 		}
 		
-		
 		   // Stampa la lista di Record
-	    for(Record r: records) {r.stampaDEB();}
-	    
+	    for(Record r: records) System.out.println(r.getIntbyField("EsAlbArr"));
 	    
 	    Database DB = new Database(records);
 	    ArrayList<Record> recordsFilter = new ArrayList<>();
 	    
-	    System.out.println("------------------FILTRO------------------------------");
-	    
-	    recordsFilter = DB.filterGreater("String", 10000);
-	    
-	    for(Record r: recordsFilter) {r.stampaDEB();}
+	    //dichiarazione e inizializzazione del filtro
+	    Filtro filtro = new FilterEsAlbArrGreater(1000);
+	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
+	    System.out.println("------------------FILTRO maggiore ------------------------------");
+	    for(Record r: recordsFilter) System.out.println(r.getIntbyField("EsAlbArr"));
 		
+	    
+	    filtro = new FilterEsAlbArrIncluded(200,400);
+	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
+	    System.out.println("------------------FILTRO compreso ------------------------------");
+	    for(Record r: recordsFilter) System.out.println(r.getIntbyField("EsAlbArr"));
+	    
 	}
 
 	
