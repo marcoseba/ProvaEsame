@@ -1,5 +1,8 @@
 package database;
 
+import database.cella.*;
+
+
 import java.util.ArrayList;
 
 public class Database {
@@ -14,15 +17,27 @@ public class Database {
 	
 	public ArrayList<Record> getAllData() {return dati;}
 	
-	//Conditional Filter
-	public ArrayList<Record> filterGreater(String field,int val){
+	//--------Conditional Filter-------------------
+	
+	public ArrayList<Record> filterGreater(String field,int val) throws ClassNotFoundException{
 		
 		ArrayList<Record> risFilter = new ArrayList<>(); 
-		
-		for(Record c : dati ) {
-			if(c.getIntbyField(field) > val) {
-				risFilter.add(c);
+				
+		for(Record c : dati ) { //scorre il database
+			
+			for(CellaParentsInt cella : c.dataIntArrey) {
+				
+				Class prova = Class.forName(field);
+				
+				if(Class.forName(field).isInstance(cella)) {
+					
+					if(cella.getValue() > val) {
+						
+						risFilter.add(c);
+					}
+				}
 			}
+			
 		}
 		
 		return risFilter;
