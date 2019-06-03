@@ -1,17 +1,12 @@
 package database.filtri;
 
-public class FilterEsAlbArrGreater implements Filtro {
+public class FilterEsAlbArrGreater extends Filter1ParParent implements Filtro {
 
-	int parametroFiltro;
 	
-	public FilterEsAlbArrGreater(int parametroFiltro){
-		this.parametroFiltro = parametroFiltro;
+	public FilterEsAlbArrGreater(Object parametroFiltro) {
+		super(parametroFiltro);
 	}
-	
-	public void setParametroFiltro(int parametro) {
-		parametroFiltro = parametro;
-	}
-	
+
 	public boolean filter(Record record) {
 		
 		if(record.EsAlbArr > parametroFiltro) {
