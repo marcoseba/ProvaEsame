@@ -2,7 +2,6 @@ package database.filtri;
 
 public class FilterEsAlbArrLess extends Filter1ParParent implements Filtro {
 
-
 	
 	public FilterEsAlbArrLess(Object parametroFiltro) {
 		super(parametroFiltro);
