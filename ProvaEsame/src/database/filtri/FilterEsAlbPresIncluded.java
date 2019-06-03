@@ -9,7 +9,7 @@ public class FilterEsAlbPresIncluded extends Filter2ParParent implements Filtro 
 
 	public boolean filter(Record record) {
 		
-		if( record.EsAlbPres > parametro1 & record.EsAlbPres < parametro2) {
+		if( record.EsAlbPres >= parametro1 & record.EsAlbPres <= parametro2) {
 			return true;
 		}
 		return false;

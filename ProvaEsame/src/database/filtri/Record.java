@@ -54,4 +54,16 @@ public class Record {
 		
 	}
 
+	public String toString() {
+		
+		String ret = new String("\nProvDest: "+this.ProvDest+"\nRegGeoRes: "+this.RegGeoRes+
+				                "\nPaeseRes: "+this.PaeseRes+"\nEsAlbArr: "+this.EsAlbArr+
+				                "\nEsAlbPres: "+this.EsAlbPres+"\nEsCompArr: "+this.EsCompArr+
+				                "\nEsCompPres: "+this.EsCompPres+"\nTotEsRicArr: "+this.TotEsRicArr+
+				                "\nTotEsRicPres: "+this.TotEsRicPres);
+		
+		return ret;
+	}
+		
+	
 }

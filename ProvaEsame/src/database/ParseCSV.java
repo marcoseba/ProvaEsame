@@ -6,10 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import database.filtri.FilterEsAlbArrGreater;
-import database.filtri.FilterEsAlbArrIncluded;
-import database.filtri.Filtro;
-import database.filtri.Record;
+import database.filtri.*;
 
 
 public class ParseCSV {
@@ -79,14 +76,36 @@ public class ParseCSV {
 	    Filtro filtro = new FilterEsAlbArrGreater(1000);
 	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
 	    System.out.println("------------------FILTRO maggiore ------------------------------");
-	    for(Record r: recordsFilter) System.out.println(r.getIntbyField("EsAlbArr"));
+	    for(Record r: recordsFilter) System.out.println(r);
 		
 	    
 	    filtro = new FilterEsAlbArrIncluded(200,400);
 	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
 	    System.out.println("------------------FILTRO compreso ------------------------------");
 	    for(Record r: recordsFilter) System.out.println(r.getIntbyField("EsAlbArr"));
+	 
 	    
+	    String[] param = new String[2];
+	    param[0] = "Roma";
+	    param[1] = "Viterbo";
+	    filtro = new FilterProvDestIn(param);
+	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
+	    System.out.println("------------------FILTRO In prov dest ------------------------------");
+	    for(Record r: recordsFilter) System.out.println(r.toString());
+	    
+	    param[0] = "Roma";
+	    param[1] = "Viterbo";
+	    filtro = new FilterProvDestNin(param);
+	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
+	    System.out.println("------------------FILTRO Nin prov dest ------------------------------");
+	    for(Record r: recordsFilter) System.out.println(r.toString());
+	    
+	    param[0] = "Australia";
+	    //param[1] = "Viterbo";
+	    filtro = new FilterPaeseResIn(param);
+	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
+	    System.out.println("------------------FILTRO In Paese Residenza ------------------------------");
+	    for(Record r: recordsFilter) System.out.println(r.toString());
 	}
 
 	
