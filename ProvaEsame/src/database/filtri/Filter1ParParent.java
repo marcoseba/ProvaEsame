@@ -10,11 +10,7 @@ public class Filter1ParParent {
 			this.parametroFiltro =(Integer)parametroFiltro;
 			}
 	}
-	
-	public void setParametroFiltro(int parametro) {
-		parametroFiltro = parametro;
-	}
-	
+		
 	public void setParametroFiltro(Object parametro) {
 		
 		if(parametro instanceof Integer ) { //implementare gestione errori
