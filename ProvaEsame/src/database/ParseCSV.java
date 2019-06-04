@@ -5,13 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import database.filtri.*;
 
 
 public class ParseCSV {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
 		
 		String csvFile = "/home/marcoseba/universita/programmazione/esame/dataset/dataset61.csv";
 		BufferedReader br = null;                                     
@@ -67,13 +70,16 @@ public class ParseCSV {
 		}
 		
 		   // Stampa la lista di Record
-	    for(Record r: records) System.out.println(r.getIntbyField("EsAlbArr"));
+	    //for(Record r: records) System.out.println(r.getIntbyField("EsAlbArr"));
 	    
 	    Database DB = new Database(records);
 	    ArrayList<Record> recordsFilter = new ArrayList<>();
 	    
+	    Filtro filtro; //riferimeto a interfaccia filtro
+	    
+	    /*
 	    //dichiarazione e inizializzazione del filtro
-	    Filtro filtro = new FilterEsAlbArrGreater(1000);
+	    filtro = new FilterEsAlbArrGreater(1000);
 	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
 	    System.out.println("------------------FILTRO maggiore ------------------------------");
 	    for(Record r: recordsFilter) System.out.println(r);
@@ -106,6 +112,29 @@ public class ParseCSV {
 	    recordsFilter = DB.runFilter(filtro); //elaborazione dati
 	    System.out.println("------------------FILTRO In Paese Residenza ------------------------------");
 	    for(Record r: recordsFilter) System.out.println(r.toString());
+	    
+	    */
+	    //-------------------------------------------------------------------------------
+	    
+	    String percorso = "database.filtri.";
+	    String nomeFiltro = "FilterEsCompArrLess";  //INSERIRE NOME FILTRO 
+	    
+	    String nomeCompleto = percorso.concat(nomeFiltro);
+	    
+	    Class<?> cls = Class.forName(nomeCompleto); //seleziono la classe
+	    
+        Constructor ct = cls.getDeclaredConstructor(Object.class); //seleziono il costruttore
+        //System.out.println(ct.getName());
+        
+        filtro =(Filtro)ct.newInstance(10);  //istanzo oggetto filtro
+        
+        recordsFilter = DB.runFilter(filtro); //elaborazione dati con filtro selezionato
+	    System.out.println("\n---------------------FILTRO istanza dinamica ------------------");
+	    System.out.println("FILTRO Selezionato: "+nomeFiltro);
+	    for(Record r: recordsFilter) System.out.println(r); //stampa dati filtrati
+	    
+	    System.out.println("------------------FINE ------------------------------");
+	    //for(Record r: recordsFilter) System.out.println(r.toString());
 	}
 
 	
