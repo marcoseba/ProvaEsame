@@ -1,9 +1,9 @@
 package database.filtri;
 
-public class FilterEsAlbArrGreater extends Filter1ParParent implements Filtro {
+public class FilterEsAlbArr$gt extends Filter1ParParent implements Filtro {
 
 	
-	public FilterEsAlbArrGreater(Object parametroFiltro) {
+	public FilterEsAlbArr$gt(Object parametroFiltro) {
 		super(parametroFiltro);
 	}
 

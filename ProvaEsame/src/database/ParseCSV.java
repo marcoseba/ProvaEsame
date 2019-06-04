@@ -117,7 +117,7 @@ public class ParseCSV {
 	    //-------------------------------------------------------------------------------
 	    
 	    String percorso = "database.filtri.";
-	    String nomeFiltro = "FilterEsCompArrLess";  //INSERIRE NOME FILTRO 
+	    String nomeFiltro = "FilterEsAlbArr$gt";  //INSERIRE NOME FILTRO 
 	    
 	    String nomeCompleto = percorso.concat(nomeFiltro);
 	    
@@ -126,7 +126,7 @@ public class ParseCSV {
         Constructor ct = cls.getDeclaredConstructor(Object.class); //seleziono il costruttore
         //System.out.println(ct.getName());
         
-        filtro =(Filtro)ct.newInstance(10);  //istanzo oggetto filtro
+        filtro =(Filtro)ct.newInstance(80000);  //istanzo oggetto filtro
         
         recordsFilter = DB.runFilter(filtro); //elaborazione dati con filtro selezionato
 	    System.out.println("\n---------------------FILTRO istanza dinamica ------------------");
