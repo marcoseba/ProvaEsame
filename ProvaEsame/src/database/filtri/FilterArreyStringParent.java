@@ -9,7 +9,9 @@ public class FilterArreyStringParent {
 		
 		if(parametri instanceof String[] ) {
 			this.parametri = (String[])parametri;
-		}
+			
+		}else {throw new IllegalArgumentException("this filter accepted String array");}
+		
 	}
 	
 	
@@ -17,7 +19,7 @@ public class FilterArreyStringParent {
 		
 		if(parametri instanceof String[] ) {
 			this.parametri = (String[])parametri;
-		}
+		}else {throw new IllegalArgumentException("this filter accepted String array");}
 	
 	}
 	

@@ -134,7 +134,18 @@ public class ParseCSV {
 	    for(Record r: recordsFilter) System.out.println(r); //stampa dati filtrati
 	    
 	    System.out.println("------------------FINE ------------------------------");
-	    //for(Record r: recordsFilter) System.out.println(r.toString());
+	 
+	    GestoreFiltri gf = new GestoreFiltri();
+	    
+	    String[] param = new String[2];
+	    param[0] = "Roma";
+	    param[1] = "Viterbo";
+	    
+	    filtro = gf.instanceFilter("FilterProvDestIn", 10);
+        recordsFilter = DB.runFilter(filtro); //elaborazione dati con filtro selezionato
+	    System.out.println("\n---------------------FILTRO istanza dinamica 2 ------------------");
+	    for(Record r: recordsFilter) System.out.println(r); //stampa dati filtrati
+	    
 	}
 
 	
